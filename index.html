@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>晴词 · Harukoto — Windows 中文拼音输入法</title>
+<meta name="description" content="晴词 Harukoto：Windows 中文拼音输入法，带日语辅助输入和 FF14 主题词库。输入内容和个人词库只在本机处理，不上云。">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://ainasnow.github.io/Harukoto-Site/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ainasnow.github.io/Harukoto-Site/">
+<meta property="og:title" content="晴词 · Harukoto">
+<meta property="og:description" content="Windows 中文拼音输入法，带日语辅助输入和 FF14 主题词库。输入内容和个人词库只在本机处理，不上云。">
+<meta property="og:locale" content="zh_CN">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  try { var t = localStorage.getItem('hk-theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="晴词 Harukoto 首页">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" class="logo-bg"/><circle cx="16" cy="14" r="6" class="logo-sun"/><path d="M6 22c3-2 6-2 10 0s7 2 10 0" class="logo-wave"/></svg>
+      <span>晴词 <em>Harukoto</em></span>
+    </a>
+    <nav class="links" aria-label="页面导航">
+      <a href="#features">功能</a>
+      <a href="#look">外观</a>
+      <a href="#perf">性能</a>
+      <a href="#install">安装</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://github.com/AinaSnow/Harukoto">GitHub</a>
+    </nav>
+    <button class="theme" type="button" aria-label="切换深浅色" title="切换深浅色">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-sun" d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/><path class="i-moon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+<!-- 首屏 -->
+<section class="hero" id="top">
+  <div class="wrap hero-in">
+    <div class="hero-text">
+      <p class="tag">Windows 10／11 x64 · 输入不上云 · 开源</p>
+      <h1>晴词<span class="en">Harukoto</span></h1>
+      <p class="lede">一款<strong>输入不上云</strong>的中文拼音输入法，<br class="br-wide">顺手打日语，也认得艾欧泽亚的名字。</p>
+      <p class="sub">整句拼音、简拼混拼、模糊音与纠错；拼音或英语直出日语表记与假名；可选的 FF14 主题词库收录九万余条名称。输入内容只在本机处理，不上传。</p>
+      <div class="cta">
+        <a class="btn primary" href="https://github.com/AinaSnow/Harukoto/releases">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>
+          下载试用版
+        </a>
+        <a class="btn ghost" href="#trial">试用前须知</a>
+      </div>
+      <p class="ver">当前：<b>0.4.4-alpha.37</b> 试用版 · 未签名 · 开发测试阶段</p>
+    </div>
+
+    <figure class="demo" aria-label="候选窗示意图">
+      <div class="seg" role="group" aria-label="切换示意图的候选窗风格">
+        <button type="button" data-style="fluent" aria-pressed="true">晴空 Fluent</button>
+        <button type="button" data-style="capsule" aria-pressed="false">晴空胶囊</button>
+      </div>
+      <div class="app">
+        <div class="app-bar"><i></i><i></i><i></i><span>记事本</span></div>
+        <div class="app-body">
+          <p class="typed">下次去<span class="comp">riben</span><span class="caret"></span></p>
+          <div class="cw fluent auto" id="hero-cw" role="img" aria-label="单行候选窗示意：拼音 riben，候选 1 日本，2 日本（读音 にほん），3 にほん，4 日">
+            <div class="cw-pre">riben</div>
+            <ol class="cw-row">
+              <li class="on"><b>1</b>日本</li>
+              <li><b>2</b>日本<i>にほん</i></li>
+              <li><b>3</b>にほん</li>
+              <li><b>4</b>日</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <figcaption>示意图（CSS 绘制，非实际截图；候选排列仅作演示）。候选窗新风格自 alpha.36 提供，实机测试中。</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 卖点 -->
+<section class="points wrap" aria-label="核心卖点">
+  <div class="point">
+    <div class="pi"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div>
+    <h3>输入不上云</h3>
+    <p>词库、排序、学习记录全在本机。诊断工具也不记录你打过的字。</p>
+  </div>
+  <div class="point">
+    <div class="pi"><svg viewBox="0 0 24 24"><path d="M4 7h10M4 12h16M4 17h8"/><circle cx="18" cy="7" r="2"/></svg></div>
+    <h3>中文为本</h3>
+    <p>整句拼音、简繁切换、简拼混拼、模糊音、手误纠错、选词记忆。</p>
+  </div>
+  <div class="point">
+    <div class="pi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3" class="fill"/></svg></div>
+    <h3>日语顺手打</h3>
+    <p>拼音或英语触发日语词，表记与假名分开选，F6 查看活用形。</p>
+  </div>
+  <div class="point">
+    <div class="pi"><svg viewBox="0 0 24 24"><path d="M4 18 10 6l4 8 2-3 4 7z"/></svg></div>
+    <h3>一个引擎，多开不重</h3>
+    <p>所有应用共用一个后台引擎，词库只加载一份；多开应用时省内存、打字更快。</p>
+  </div>
+</section>
+
+<!-- 功能 -->
+<section class="section" id="features">
+  <div class="wrap">
+    <h2 class="h2"><span>功能</span>四个方向</h2>
+
+    <article class="feat">
+      <div class="feat-head"><span class="num">01</span><h3>中文输入</h3></div>
+      <ul class="grid">
+        <li><b>整句拼音</b>空格、数字选词；<kbd>-</kbd> <kbd>=</kbd> 或方向键翻页，选到页尾继续按自动翻页。可只选句首一部分，剩下的拼音继续组句。</li>
+        <li><b>简拼与混拼</b><code>nh</code> → 你好，<code>zgren</code> → 中国人。</li>
+        <li><b>模糊音与纠错</b>z=zh、n=l 等按对开启；常见手误自动纠正，候选下标“纠错”。</li>
+        <li><b>选词记忆与个人词</b>选过的词以后优先，误选改选即可纠正；可加个人词，<kbd>Ctrl</kbd>+<kbd>Delete</kbd> 忘记学到的词，<kbd>[</kbd> <kbd>]</kbd> 以词定字。</li>
+        <li><b>简体／繁体</b>输出一键切换，主题词按词组转换。</li>
+        <li><b>符号与快捷输入</b><code>v</code>+数字、<code>vrq</code> 日期、<code>vsj</code> 时间、<code>vfh</code> 列出全部符号分类；<kbd>Ctrl</kbd>+<kbd>.</kbd> 切标点，单按 <kbd>Shift</kbd> 切中英文。</li>
+      </ul>
+    </article>
+
+    <article class="feat">
+      <div class="feat-head"><span class="num">02</span><h3>日语辅助</h3></div>
+      <div class="split">
+        <ul class="grid one">
+          <li><b>拼音、英语直出日语</b>已收录的明确触发词可出日语，例如 <code>riben</code> → 日本／にほん、<code>xuexiao</code> → 学校／がっこう、<code>chi</code> 或 <code>eat</code> → 食べる／たべる、<code>coffee</code> → コーヒー。</li>
+          <li><b>表记与假名分开</b>两条独立候选，选哪条就只上屏哪条。</li>
+          <li><b>F6 活用面板（首版）</b>高亮“食べる”按 <kbd>F6</kbd>，可选 食べます、食べて、食べない 等形式。</li>
+        </ul>
+        <p class="note">说明：这不是中译日的自动翻译，只覆盖已收录的触发词；个人日语词表可自行导入。</p>
+      </div>
+    </article>
+
+    <article class="feat ff">
+      <div class="feat-head"><span class="num">03</span><h3>主题词库 · FF14</h3></div>
+      <div class="split">
+        <div>
+          <p class="big"><b>90,536</b> 条名称 <span>＋ 71 条玩家用语</span></p>
+          <p>FF14 词库 0.5.0：物品、地名、技能、副本、NPC、怪物与 Boss、任务、坐骑、状态、特性、情感动作、PvP 技能等，按中日英同表 ID 对齐；以及团辅、团本、幻卡、光呆等玩家说法。</p>
+          <ul class="chips" aria-label="示例">
+            <li><code>wuerdaha</code> 乌尔达哈</li>
+            <li><code>sainiao</code> 赛鸟／チョコボレース</li>
+            <li><code>danshua</code> 单刷／ソロ</li>
+            <li>团辅 → シナジー</li>
+          </ul>
+        </div>
+        <ul class="grid one">
+          <li><b>不抢日常首选</b>与常用词同音的触发已过滤；常用读音的首选在 FF14 开／关下保持一致（项目评测）。</li>
+          <li><b>可导入、启停、更新、回退</b>主题包默认关闭，在“晴词主题词库”里导入启用。</li>
+          <li><b>不需要 Python</b>词库管理器内置到晴词里，导入、启用 FF14 词库直接可用。</li>
+          <li><b>测试中</b>游戏内实机抽查尚未完成；部分自动拼音可能有多音字误读。</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="feat">
+      <div class="feat-head"><span class="num">04</span><h3>Windows 体验与独立引擎</h3></div>
+      <div class="engine">
+        <svg class="engine-fig" viewBox="0 0 360 170" role="img" aria-label="示意：多个应用里的小客户端连接同一个后台引擎">
+          <g class="e-apps">
+            <rect x="8" y="10" width="92" height="34" rx="8"/><text x="54" y="32">聊天</text>
+            <rect x="8" y="68" width="92" height="34" rx="8"/><text x="54" y="90">浏览器</text>
+            <rect x="8" y="126" width="92" height="34" rx="8"/><text x="54" y="148">游戏</text>
+          </g>
+          <g class="e-lines"><path d="M100 27 C170 27 170 85 236 85"/><path d="M100 85 H236"/><path d="M100 143 C170 143 170 85 236 85"/></g>
+          <rect class="e-core" x="236" y="45" width="116" height="80" rx="14"/>
+          <text class="e-core-t" x="294" y="80">后台引擎</text>
+          <text class="e-core-s" x="294" y="100">词库只加载一份</text>
+        </svg>
+        <ul class="grid one">
+          <li><b>独立引擎（默认开启）</b>各应用只保留很小的输入客户端；引擎不可用、超时或词库不一致时，这段输入自动改由应用内计算，不丢已选文字。设置里可关闭。</li>
+          <li><b>游戏内输入</b>支持游戏自带候选框的系统接口（如 FF14）。<span class="pill">实机测试中</span></li>
+          <li><b>候选窗可调</b>字号、宽度、布局可视化编辑，带实时预览；支持高 DPI 与远程串流显示。新版单行风格见<a href="#look">外观</a>。</li>
+          <li><b>热更新</b>词库与输入法更新在两段输入之间生效，多数情况下不必重开应用。</li>
+          <li><b>诊断工具</b><code>Diagnose.cmd</code>（不记录输入内容）与候选来源说明 <code>Explain.cmd</code>。</li>
+          <li><b>检查更新</b>设置里手动检查，或开启每天自动检查（默认关闭）；只向 GitHub 查询发布信息，有新版时打开发布页，不自动下载安装。</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 外观 -->
+<section class="section look" id="look">
+  <div class="wrap">
+    <h2 class="h2"><span>外观</span>单行候选窗，两种晴空风格</h2>
+    <p class="intro">候选改为与系统输入法类似的单行横排：序号、词和读音在同一行，窗口随候选收窄，超过最大宽度才换行。风格与颜色在“晴词候选窗设置”里切换。<span class="pill">alpha.36 起 · 实机测试中</span></p>
+    <div class="looks">
+      <figure>
+        <div class="stage light"><div class="cw fluent light" role="img" aria-label="晴空 Fluent 浅色示意">
+          <div class="cw-pre">wuerdaha</div>
+          <ol class="cw-row"><li class="on"><b>1</b>乌尔达哈</li><li><b>2</b>ウルダハ<i>うるだは</i></li><li><b>3</b>乌尔</li></ol>
+        </div></div>
+        <figcaption><b>晴空 Fluent</b> · 浅色</figcaption>
+      </figure>
+      <figure>
+        <div class="stage dark"><div class="cw fluent dark" role="img" aria-label="晴空 Fluent 深色示意">
+          <div class="cw-pre">wuerdaha</div>
+          <ol class="cw-row"><li class="on"><b>1</b>乌尔达哈</li><li><b>2</b>ウルダハ<i>うるだは</i></li><li><b>3</b>乌尔</li></ol>
+        </div></div>
+        <figcaption><b>晴空 Fluent</b> · 深色</figcaption>
+      </figure>
+      <figure>
+        <div class="stage light"><div class="cw capsule light" role="img" aria-label="晴空胶囊浅色示意">
+          <div class="cw-pre">wuerdaha</div>
+          <ol class="cw-row"><li class="on"><b>1</b>乌尔达哈</li><li><b>2</b>ウルダハ<i>うるだは</i></li><li><b>3</b>乌尔</li></ol>
+        </div></div>
+        <figcaption><b>晴空胶囊</b> · 浅色</figcaption>
+      </figure>
+      <figure>
+        <div class="stage dark"><div class="cw capsule dark" role="img" aria-label="晴空胶囊深色示意">
+          <div class="cw-pre">wuerdaha</div>
+          <ol class="cw-row"><li class="on"><b>1</b>乌尔达哈</li><li><b>2</b>ウルダハ<i>うるだは</i></li><li><b>3</b>乌尔</li></ol>
+        </div></div>
+        <figcaption><b>晴空胶囊</b> · 深色</figcaption>
+      </figure>
+    </div>
+    <ul class="grid look-notes">
+      <li><b>晴空 Fluent</b>接近 Windows 11 面板：当前候选用系统强调色淡底加左侧竖条标出。</li>
+      <li><b>晴空胶囊</b>大圆角，每个候选是一枚淡色胶囊，当前候选变成实心晴空蓝。</li>
+      <li><b>颜色</b>跟随系统、浅色或深色；系统高对比模式下始终用系统颜色。</li>
+    </ul>
+    <p class="fine">示意图按项目配色用 CSS 绘制，不是截图；Fluent 的强调色在实际使用中取自你的 Windows 设置。真实应用中的深浅色、阴影与光标贴合仍在实机测试中。</p>
+
+    <div class="next">
+      <h3>最近几版还带来</h3>
+      <ul>
+        <li><b>启用 FF14 词库不再需要 Python</b>词库管理器内置到晴词里。</li>
+        <li><b>候选窗界面更新免重开</b>只改外观的更新，在两段输入之间自动换上新界面（首次升级到该版本时仍需重开一次应用）。alpha.36 起。</li>
+        <li><b>检查更新</b>设置里一键检查；可选每天自动检查一次（默认关闭）。有新版时打开发布页，不自动下载安装。alpha.37 起。</li>
+      </ul>
+      <p class="fine">以上功能已通过自动测试，真实应用中的效果仍在实机验证中。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 性能 -->
+<section class="section perf" id="perf">
+  <div class="wrap">
+    <h2 class="h2"><span>性能</span>12 个应用同时输入</h2>
+    <p class="intro">独立引擎与原来“每个应用各自加载词库”的方式对比。8 个应用连续输入、4 个待机，共 12 个应用，每个应用 3,464 键，同一台机器。</p>
+    <div class="bars">
+      <div class="bar-row">
+        <div class="bar-label">总内存</div>
+        <div class="bar-track"><div class="bar old" style="--w:100%"><span>原方式 2,030 MiB</span></div></div>
+        <div class="bar-track"><div class="bar new" style="--w:11.8%"><span>独立引擎 239 MiB</span></div></div>
+        <p class="bar-sum"><b>省约 88%</b>，约 1.75 GiB</p>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">逐键中位耗时</div>
+        <div class="bar-track"><div class="bar old" style="--w:100%"><span>原方式 29.51 ms</span></div></div>
+        <div class="bar-track"><div class="bar new" style="--w:12.2%"><span>独立引擎 3.61 ms</span></div></div>
+        <p class="bar-sum"><b>快约 8 倍</b></p>
+      </div>
+    </div>
+    <dl class="stats">
+      <div><dt>后续应用接入并出首个候选</dt><dd>7.30 ms <small>原方式 3,345 ms</small></dd></div>
+      <div><dt>每个应用内的输入客户端</dt><dd>约 1.7 MiB <small>原方式约 170 MiB</small></dd></div>
+      <div><dt>登录后首次打字，引擎启动</dt><dd>约 2.4 s <small>之后不再等待</small></dd></div>
+    </dl>
+    <p class="fine">数据来自项目基准测试（Windows 11，16 逻辑 CPU，生产词库＋FF14 词库，2026-11-23），计入从按键到候选文本就绪，未计入候选窗绘制、编辑会话调度、冷磁盘与低配 CPU；真实应用中的体感<strong>仍在实机测试中</strong>。方法与原始数据见 <a href="https://github.com/AinaSnow/Harukoto/blob/main/docs/ENGINE_CN02.md">ENGINE_CN02.md</a>。</p>
+  </div>
+</section>
+
+<!-- 安装 -->
+<section class="section" id="install">
+  <div class="wrap">
+    <h2 class="h2"><span>安装</span>三步</h2>
+    <ol class="steps">
+      <li>
+        <span class="sn">1</span>
+        <h3>下载并核对</h3>
+        <p>从 <a href="https://github.com/AinaSnow/Harukoto/releases">Releases</a> 下载 <code>Harukoto-&lt;版本&gt;-Setup.exe</code>，核对页面上的 SHA-256：</p>
+        <pre><code>Get-FileHash .\Harukoto-0.4.4-alpha.37-Setup.exe</code></pre>
+      </li>
+      <li>
+        <span class="sn">2</span>
+        <h3>双击安装</h3>
+        <p>点“安装 / 更新”，同意管理员授权。安装包未签名，Windows 会先拦一下，见下方<a href="#trial">试用版说明</a>。</p>
+      </li>
+      <li>
+        <span class="sn">3</span>
+        <h3>重开应用，切换</h3>
+        <p>重新打开要打字的应用（已开着的不会加载新输入法），按 <kbd>Win</kbd>+<kbd>空格</kbd> 切到“晴词 Harukoto”。</p>
+      </li>
+    </ol>
+    <p class="req">系统要求：Windows 10／11 x64。启用 FF14 等主题词库不需要 Python。卸载在“设置 → 应用”中进行，个人词表和设置会保留。</p>
+  </div>
+</section>
+
+<!-- 试用版说明 -->
+<section class="section trial" id="trial">
+  <div class="wrap">
+    <div class="trial-card">
+      <div>
+        <h2 class="h2"><span>试用版</span>先看这里</h2>
+        <p>0.4.4-alpha.37 是开发测试版，<strong>没有代码签名</strong>，也还没有正式版。</p>
+        <ul class="checks">
+          <li>出现“Windows 已保护你的电脑”：点 <b>更多信息</b> → <b>仍要运行</b>。</li>
+          <li>浏览器提示“不常下载”：选择保留文件。</li>
+          <li>杀毒软件误报：先确认 SHA-256 与发布页一致再放行。</li>
+        </ul>
+      </div>
+      <div class="smartscreen" role="img" aria-label="示意：SmartScreen 对话框中先点更多信息，再点仍要运行">
+        <div class="ss-title">Windows 已保护你的电脑</div>
+        <div class="ss-line"></div><div class="ss-line short"></div>
+        <div class="ss-link">更多信息 <span class="ss-mark">①</span></div>
+        <div class="ss-btns"><span class="ss-run">仍要运行 <span class="ss-mark">②</span></span><span>不运行</span></div>
+        <div class="ss-cap">示意</div>
+      </div>
+    </div>
+    <div class="known">
+      <h3>已知限制</h3>
+      <ul>
+        <li>以管理员身份运行的程序和开始菜单搜索等沙箱程序不接入独立引擎，改用应用内输入：打字和候选不受影响，只是这个程序会多占一份词库内存，第一次打字稍慢。</li>
+        <li>登录后第一次打字，后台引擎启动约 2 秒，这期间候选可能稍晚出现。</li>
+        <li>从 alpha.35 或更早版本升级后，已经开着的应用要重开一次；之后只改候选窗外观的更新不用重开。</li>
+        <li>只支持 Windows x64；没有 macOS／手机版本。</li>
+      </ul>
+      <p>想帮忙试用？请看 <a href="https://github.com/AinaSnow/Harukoto/blob/main/docs/TRIAL.md">试用说明</a>，里面写了重点试什么、怎么反馈。</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="wrap narrow">
+    <h2 class="h2"><span>FAQ</span>常见问题</h2>
+    <details>
+      <summary>会上传我打的字吗？</summary>
+      <p>不会。候选计算、学习记录和个人词都在本机完成，不上传。诊断工具 <code>Diagnose.cmd</code> 也不记录输入内容。晴词唯一的联网是检查更新：只向 GitHub 查询发布信息，不带输入内容、个人词库或设备标识，默认只在你点按钮时进行。</p>
+    </details>
+    <details>
+      <summary>为什么 Windows 说“已保护你的电脑”？</summary>
+      <p>试用版安装包没有代码签名，SmartScreen 会拦截。核对发布页上的 SHA-256 后，点“更多信息 → 仍要运行”即可。</p>
+    </details>
+    <details>
+      <summary>装好了但应用里切不出来／没变化？</summary>
+      <p>已经开着的应用不会加载新输入法，请彻底退出后重开（像 QQ 这类常驻托盘的要从托盘退出）。然后按 <kbd>Win</kbd>+<kbd>空格</kbd> 切换。</p>
+    </details>
+    <details>
+      <summary>怎么更新到新版本？</summary>
+      <p>在“晴词候选窗设置”最下方点“检查更新”，有新版时会打开发布页；下载新的 Setup.exe 直接安装即可覆盖旧版，个人词表和设置会保留。也可以开启“每天自动检查一次”（默认关闭）。</p>
+    </details>
+    <details>
+      <summary>FF14 词库怎么开？</summary>
+      <p>默认不开。在开始菜单打开“晴词主题词库”，预览 FF14 词库 → 导入 → 启用，再重开游戏。不需要 Python（alpha.34 及更早版本需要）。</p>
+    </details>
+    <details>
+      <summary>开了 FF14 词库会影响平常打字吗？</summary>
+      <p>和常用词同音的触发已经过滤，项目评测中常用读音的首选在开／关词库时相同。少数读音下主题词会出现在第 2～3 位之后；遇到排得不对的词，可以用 <code>Explain.cmd</code> 查看原因并反馈。</p>
+    </details>
+    <details>
+      <summary>独立引擎有问题怎么办？</summary>
+      <p>引擎出问题时会自动改用应用内输入。也可以在设置窗口关闭“多个应用共用一个输入引擎”，下一次按键起生效，不需要重开应用。</p>
+    </details>
+    <details>
+      <summary>支持 macOS 或手机吗？</summary>
+      <p>目前只支持 Windows 10／11 x64。Android 源码保留但暂不发布，macOS、iOS 已移除。</p>
+    </details>
+    <details>
+      <summary>晴词和 Meowpuut 是什么关系？</summary>
+      <p>晴词独立维护自 Meowpuut，保留上游版权与 MIT 授权，但不代表原上游的官方发行。为兼容此前的开发版，保留了旧的标识、注册表键和数据目录。</p>
+    </details>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap final-in">
+    <h2>来试试晴词</h2>
+    <p>欢迎反馈：什么应用、做了什么、期望和实际看到的结果。</p>
+    <a class="btn primary" href="https://github.com/AinaSnow/Harukoto/releases">前往 Releases 下载</a>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div>
+      <p class="foot-brand">晴词 · Harukoto</p>
+      <p>Windows 中文拼音输入法，输入不上云。</p>
+    </div>
+    <ul>
+      <li><a href="https://github.com/AinaSnow/Harukoto">GitHub 仓库</a></li>
+      <li><a href="https://github.com/AinaSnow/Harukoto/blob/main/docs/USER_GUIDE.md">使用指南</a></li>
+      <li><a href="https://github.com/AinaSnow/Harukoto/blob/main/docs/RELEASE_NOTES.md">发布说明</a></li>
+      <li><a href="https://github.com/AinaSnow/Harukoto/blob/main/LICENSE">MIT 许可证</a></li>
+    </ul>
+    <p class="foot-note">晴词独立维护自 <a href="https://github.com/Krysta1ll/Meowpuut">Meowpuut</a>，保留上游版权与 MIT 授权，不代表原上游的官方发行。词库与第三方数据的来源和授权见仓库中的 <a href="https://github.com/AinaSnow/Harukoto/blob/main/THIRD_PARTY.md">THIRD_PARTY.md</a>。FINAL FANTASY XIV 相关名称归其权利人所有，本项目与其无关联。</p>
+  </div>
+</footer>
+
+<script src="assets/site.js" defer></script>
+</body>
+</html>
